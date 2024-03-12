@@ -15,6 +15,15 @@ from cartosky.zoom import DESSkymap, BlissSkymap
 
 
 import warnings
-from matplotlib.cbook import MatplotlibDeprecationWarning
+
+
+from packaging import version
+from matplotlib import __version__ as mplversion
+
+if version.parse(mplversion) > version.parse("3.6"):
+    from matplotlib import MatplotlibDeprecationWarning
+else:
+    from matplotlib.cbook import MatplotlibDeprecationWarning
+
 warnings.filterwarnings("ignore",category=MatplotlibDeprecationWarning)
 

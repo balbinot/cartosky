@@ -496,7 +496,7 @@ class Skymap(object):
     def draw_vis_focal_planes(self, ra, dec, **kwargs):
         from cartosky.instrument.euclidvis import VISFocalPlane
         defaults = dict(alpha=0.2,color='red',edgecolors='none',lw=0,
-                        transform=ccrs.PlateCarree()
+                        transform=ccrs.PlateCarree())
         setdefaults(kwargs,defaults)
         ra,dec = np.atleast_1d(ra,dec)
         if len(ra) != len(dec):
@@ -506,7 +506,7 @@ class Skymap(object):
         # Should make sure axis exists....
         ax = plt.gca()
         for _ra,_dec in zip(ra,dec):
-            corners = vis.rotate(self,_ra,_dec)
+            corners = vis.rotate(_ra,_dec)
             collection = matplotlib.collections.PolyCollection(corners,**kwargs)
             ax.add_collection(collection)
         plt.draw()
